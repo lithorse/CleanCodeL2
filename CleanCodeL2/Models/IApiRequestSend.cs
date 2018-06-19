@@ -14,5 +14,9 @@ namespace CleanCodeL2.Models
         void ModifyEntity(int id, T product);
 
         void DeleteEntity(T product);
+
+        IEnumerable<T> GetProductsInSection(string section);
+
+        Product GetMostExpensiveProduct();
     }
 }

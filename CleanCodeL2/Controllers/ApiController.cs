@@ -29,6 +29,10 @@ namespace CleanCodeL2.Controllers
         [Route("AddProduct")]
         public void AddProduct( Product product)
         {
+            if (product == null)
+            {
+                throw new Exception("product cannot be null");
+            }
             _requests.AddEntity(product);
         }
 
@@ -36,6 +40,10 @@ namespace CleanCodeL2.Controllers
         [Route("ModifyProduct")]
         public void ModifyProduct(int id, Product product)
         {
+            if (product == null)
+            {
+                throw new Exception("product cannot be null");
+            }
             _requests.ModifyEntity(id, product);
         }
 
@@ -43,7 +51,29 @@ namespace CleanCodeL2.Controllers
         [Route("DeleteProduct")]
         public void DeleteProduct(Product product)
         {
+            if (product == null)
+            {
+                throw new Exception("product cannot be null");
+            }
             _requests.DeleteEntity(product);
+        }
+
+        [HttpGet]
+        [Route("GetProductsInSection")]
+        public IEnumerable<Product> GetProductsInSection(String section)
+        {
+            if (section == "")
+            {
+                throw new Exception("section cannot be empty");
+            }
+            return _requests.GetProductsInSection(section);
+        }
+
+        [HttpGet]
+        [Route("GetMostExpensiveProduct")]
+        public Product GetMostExpensiveProduct()
+        {
+            return _requests.GetMostExpensiveProduct();
         }
     }
 }
